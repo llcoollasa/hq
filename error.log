@@ -1,4 +1,0 @@
-[Tue Mar 17 10:03:33.911195 2015] [:error] [pid 15185] [client 127.0.0.1:42399] PHP Parse error:  syntax error, unexpected '}', expecting identifier (T_STRING) or variable (T_VARIABLE) or '{' or '$' in /media/disk1/www/html/hq/application/controllers/welcome.php on line 24
-[Tue Mar 17 10:03:33.911267 2015] [:error] [pid 15185] [client 127.0.0.1:42399] PHP Stack trace:
-[Tue Mar 17 10:03:33.911286 2015] [:error] [pid 15185] [client 127.0.0.1:42399] PHP   1. {main}() /media/disk1/www/html/hq/index.php:0
-[Tue Mar 17 10:03:33.911296 2015] [:error] [pid 15185] [client 127.0.0.1:42399] PHP   2. require_once() /media/disk1/www/html/hq/index.php:202
