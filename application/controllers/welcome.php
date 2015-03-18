@@ -26,7 +26,7 @@ class Welcome extends CI_Controller {
 		    echo $row->id."&nbsp;&nbsp;".$row->name. "<br/>";
 
 		}
-		//$this->load->view('welcome_message');
+		$this->load->view('welcome_message');
 	}
 }
 
