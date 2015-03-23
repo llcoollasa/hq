@@ -6,7 +6,7 @@
  *
  * @package		CodeIgniter
  * @author		ExpressionEngine Dev Team
- * @copyright	Copyright (c) 2008 - 2014, EllisLab, Inc.
+ * @copyright	Copyright (c) 2008 - 2011, EllisLab, Inc.
  * @license		http://codeigniter.com/user_guide/license.html
  * @link		http://codeigniter.com
  * @since		Version 1.0
@@ -87,7 +87,7 @@ class CI_URI {
 		if (strtoupper($this->config->item('uri_protocol')) == 'AUTO')
 		{
 			// Is the request coming from the command line?
-			if (php_sapi_name() == 'cli' or defined('STDIN'))
+			if (!defined('PHPUNIT_TEST') && (php_sapi_name() == 'cli' or defined('STDIN')))
 			{
 				$this->_set_uri_string($this->_parse_cli_args());
 				return;

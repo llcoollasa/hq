@@ -6,7 +6,7 @@
  *
  * @package		CodeIgniter
  * @author		ExpressionEngine Dev Team
- * @copyright	Copyright (c) 2008 - 2014, EllisLab, Inc.
+ * @copyright	Copyright (c) 2008 - 2011, EllisLab, Inc.
  * @license		http://codeigniter.com/user_guide/license.html
  * @link		http://codeigniter.com
  * @since		Version 2.0
@@ -44,8 +44,11 @@ class CI_Utf8 {
 			preg_match('/./u', 'é') === 1					// PCRE must support UTF-8
 			AND function_exists('iconv')					// iconv must be installed
 			AND ini_get('mbstring.func_overload') != 1		// Multibyte string function overloading cannot be enabled
-			AND $CFG->item('charset') == 'UTF-8'			// Application charset must be UTF-8
+			AND (
+                (is_object($CFG) AND $CFG->item('charset') == 'UTF-8')    // Application charset must be UTF-8
+                OR (defined('PHPUNIT_TEST') AND PHPUNIT_CHARSET == 'UTF-8')
 			)
+        )
 		{
 			log_message('debug', "UTF-8 Support Enabled");
 

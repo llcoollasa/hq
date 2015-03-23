@@ -1,0 +1,22 @@
+language: php
+php:
+  - 5.4
+  - hhvm
+
+# install vanilla CI 2.2 before anything
+before_install:
+  - wget https://github.com/EllisLab/CodeIgniter/archive/2.2.0.tar.gz -O - | tar xz
+  - cp -r application/* CodeIgniter-2.2.0/application/
+  - cp -r system/* CodeIgniter-2.2.0/system/
+
+# install this project on top of it
+install:
+  - cp -r CodeIgniter-2.2.0/system/* system/
+  - cp -r CodeIgniter-2.2.0/application/* application/
+  - mv CodeIgniter-2.2.0/index.php index.php
+  - rm -rf CodeIgniter-2.2.0
+
+# run multiple test commands
+script:
+  - phpunit                  #default test command
+  - phpunit -c phpunit.xml   #custom test command to make sure CLI args don't break the test
