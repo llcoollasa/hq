@@ -11,6 +11,9 @@ class Cart extends CI_Controller {
 	{
 		$data['products'] = $this->cart_model->retrieve_products();      
 	    $data['content'] = 'cart/products';
+	    $data['currency'] = 'cart/currency';
+	    $data['customer'] = 'customer/customer';
+	    $data['cur_symbol'] = getCurrency('symbol');
 	    $this->load->view('cart', $data);
 	}
 
@@ -47,4 +50,11 @@ class Cart extends CI_Controller {
 	    $this->cart->destroy(); // Destroy all cart data
 	    redirect('cart'); // Refresh te page
 	}
+
+	public function change_currency()
+	{
+		changeCurrency();
+	    $this->update_cart();
+	}
+	
 }

@@ -38,7 +38,8 @@ class Hq_cart extends CI_Model {
         			{
         				$data = array(
     					 	'rowid' => $value['rowid'],
-               				'qty'   => $cty
+               				'qty'   => $cty,
+               				'cur'   => $this->session->userdata('currency')
 			            );
 			            $this->cart->update($data);
         			}
@@ -55,7 +56,8 @@ class Hq_cart extends CI_Model {
 		                'id'      => $id,
 		                'qty'     => $cty,
 		                'price'   => $row->price,
-		                'name'    => $row->name
+		                'name'    => $row->name,
+		                'cur'   => $this->session->userdata('currency')
 		            );
 		 
 		            // Add the data to the cart using the insert function that is available because we loaded the cart library

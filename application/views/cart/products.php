@@ -1,10 +1,11 @@
-<h3>Products</h3>
+<h3>PRODUCTS</h3>
+<div>
 <ul class="products">
     <?php foreach($products as $p): ?>
     <li>
         <h3><?php echo $p['name']; ?></h3>
         <img src="assets/img/products/<?php echo $p['image']; ?>" alt="" height="60" width="80"/>
-        <small>&euro;<?php echo $p['price']; ?></small>
+        <small><?php echo $cur_symbol.$p['price']; ?></small>
         <?php echo form_open('cart/add_cart_item'); ?>
             <fieldset>
                 <label>Quantity</label>
@@ -16,3 +17,5 @@
     </li>
     <?php endforeach;?>
 </ul>
+</div>
+<div style="clear:both" ></div>

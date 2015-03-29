@@ -2,6 +2,12 @@
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 /**
+ * Currency
+ */
+$config['cur_default'] = 'USD';
+$config['cur_list'] = array('USD'=>"$", 'EUR'=>"&euro;", 'THB'=>"&#3647;", 'HKD'=>"$", 'SGD'=>"$", 'AUD'=>"$");
+
+/**
  * Paypal configuration
  */
 $config['pp_mode'] = 'sandbox';

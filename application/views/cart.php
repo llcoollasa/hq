@@ -14,15 +14,26 @@
  
 <div id="wrap">
  
+ 	<?php $this->view($currency); ?>
+ 	
     <?php $this->view($content); ?>    
-
+	
     <div class="cart_list">
-	    <h3>Your shopping cart</h3>
+	    <h3>SHOPPING CART</h3>
 	    <div id="cart_content">
         <?php $this->view('cart/cart'); ?> 
     	</div>
     </div>
     
+	<?php echo form_open('checkout',array("name"=>"nsds")); ?>
+	<?php $this->view($customer); ?> 
+	<p><?php echo form_submit('checkout', 'Checkout');?></p>
+	<?php echo form_close(); ?>
+
+	<code>	
+	<?php echo anchor('', 'Homepage', 'title="Homepage"'); ?>
+	</code>  
+
 </div>
  
 </body>
