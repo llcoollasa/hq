@@ -57,6 +57,7 @@ abstract class Vendor_driver
 	protected $CI;
 
 	protected $settings = array();
+	protected $_params = NULL;
 
 
 	public function __construct()
@@ -70,53 +71,52 @@ abstract class Vendor_driver
 		return isset($this->settings[$key]) ? $this->settings[$key] : FALSE;
 	} 
 
-	// public function can_authorize()
-	// {
-	// 	$method = new ReflectionMethod($this, 'authorize');
-	// 	return $method->getDeclaringClass()->name !== __CLASS__;
-	// }
+	public function can_authorize()
+	{
+		
+	}
 
-	// public function can_capture()
-	// {
-	// 	$method = new ReflectionMethod($this, 'capture');
-	// 	return $method->getDeclaringClass()->name !== __CLASS__;
-	// }
+	public function can_capture()
+	{
+	}
 
-	// public function can_refund()
-	// {
-	// 	$method = new ReflectionMethod($this, 'refund');
-	// 	return $method->getDeclaringClass()->name !== __CLASS__;
-	// }
+	public function can_refund()
+	{
+	}
 
-	// public function can_return()
-	// {
-	// 	$method = new ReflectionMethod($this, 'purchase_return');
-	// 	if ($method->getDeclaringClass()->name !== __CLASS__) return TRUE;
+	public function can_return()
+	{
+	}
 
-	// 	// try calling deprecated process_return() method instead
-	// 	if (method_exists($this, 'process_return')) return TRUE;
-	// 	if (method_exists($this, '_process_return')) return TRUE;
+	public function authorize()
+	{
+	}
 
-	// 	return FALSE;
-	// }
+	public function authorize_return()
+	{
+	}
 
-	// public function authorize()
-	// {
-	// 	throw new BadMethodCallException(lang('merchant_invalid_method'));
-	// }
-
-	// public function authorize_return()
-	// {
-	// 	throw new BadMethodCallException(lang('merchant_invalid_method'));
-	// }
-
-	// public function capture()
-	// {
-	// 	throw new BadMethodCallException(lang('merchant_invalid_method'));
-	// }
+	public function capture()
+	{
+		return $this->_process($this->_params);
+	}
 
 
 	abstract public function purchase();
+
+	public function set_params($params)
+	{
+		$this->_params = $params;
+	}
+
+	public function get_params()
+	{
+		return  $this->_params;
+	}
+
+
+
+
 
 	// public function purchase()
 	// {
@@ -155,15 +155,7 @@ abstract class Vendor_driver
 	// 	throw new BadMethodCallException(lang('merchant_invalid_method'));
 	// }
 
-	// public function param($name)
-	// {
-	// 	return isset($this->_params[$name]) ? $this->_params[$name] : FALSE;
-	// }
-
-	// public function set_params($params)
-	// {
-	// 	$this->_params = array_merge($this->_params, $params);
-	// }
+	
 
 	// public function require_params()
 	// {

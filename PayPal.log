@@ -1,0 +1,11 @@
+[12-04-2015 08:10:36] PayPal\Core\PayPalHttpConnection: INFO	: POST https://api.sandbox.paypal.com/v1/payments/payment
+[12-04-2015 08:11:02] PayPal\Core\PayPalHttpConnection: INFO	: Response Status 	: 201
+[12-04-2015 08:11:02] PayPal\Core\PayPalHttpConnection: INFO	: GET https://api.sandbox.paypal.com/v1/payments/payment/PAY-6NY71494TF098834VKUVCQ7Q
+[12-04-2015 08:11:04] PayPal\Core\PayPalHttpConnection: INFO	: Response Status 	: 200
+[13-04-2015 04:09:56] PayPal\Core\PayPalHttpConnection: INFO	: POST https://api.sandbox.paypal.com/v1/payments/payment
+[13-04-2015 04:10:25] PayPal\Core\PayPalHttpConnection: INFO	: Response Status 	: 201
+[13-04-2015 04:10:25] PayPal\Core\PayPalHttpConnection: INFO	: GET https://api.sandbox.paypal.com/v1/payments/payment/PAY-31J53442M44751514KUV6UVY
+[13-04-2015 04:10:28] PayPal\Core\PayPalHttpConnection: INFO	: Response Status 	: 200
+[13-04-2015 04:10:28] PayPal\Core\PayPalHttpConnection: INFO	: POST https://api.sandbox.paypal.com/v1/payments/payment/PAY-31J53442M44751514KUV6UVY/execute
+[13-04-2015 04:10:30] PayPal\Core\PayPalHttpConnection: INFO	: Response Status 	: 400
+[13-04-2015 04:10:30] PayPal\Core\PayPalHttpConnection: ERROR	: Got Http response code 400 when accessing https://api.sandbox.paypal.com/v1/payments/payment/PAY-31J53442M44751514KUV6UVY/execute. {"name":"VALIDATION_ERROR","details":[{"field":"payer_id","issue":"Value too long (max length 20)"}],"message":"Invalid request - see details","information_link":"https://developer.paypal.com/webapps/developer/docs/api/#VALIDATION_ERROR","debug_id":"d998aa01079c2"}

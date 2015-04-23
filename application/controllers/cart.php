@@ -13,6 +13,7 @@ class Cart extends CI_Controller {
 	    $data['content'] = 'cart/products';
 	    $data['currency'] = 'cart/currency';
 	    $data['customer'] = 'customer/customer';
+	    $data['payment'] = 'customer/payment';
 	    $data['cur_symbol'] = getCurrency('symbol');
 	    $this->load->view('cart', $data);
 	}

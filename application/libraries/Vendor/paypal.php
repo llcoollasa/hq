@@ -51,10 +51,31 @@ class Paypal extends Vendor_driver
 
 	public function purchase()
 	{
+
+		$data = $this->get_params();
+
+		$cc = $data["cc"];
+		$cart = $data["checkout_data"];
+		$products = $cart['cart_contents'];
+		$sub_total = $products['cart_total'];
+		$tax = 0;
+		$shipping = 0;
+
 		$oauthCredential = new OAuthTokenCredential($this->settings['client_id'], $this->settings['client_secret']);
 		$accessToken     = $oauthCredential->getAccessToken(array('mode' => $this->settings['mode']));
 		$apiContext = new ApiContext($oauthCredential); 
-		
+		 
+                $apiContext->setConfig(
+    array(
+        'mode' => 'sandbox',
+        'http.ConnectionTimeOut' => 30,
+        'log.LogEnabled' => true,
+        'log.FileName' => '/data2/www/hq/hq/PayPal.log',
+        'log.LogLevel' => 'FINE',
+        'validation.level' => 'log'
+    )
+);
+                
 		$addr = new Address();
 		$addr->setLine1('52 N Main ST');
 		$addr->setCity('Johnstown');
@@ -63,13 +84,13 @@ class Paypal extends Vendor_driver
 		$addr->setState('OH');
 
 		$card = new CreditCard();
-		$card->setNumber('4417119669820331');
-		$card->setType('visa');
-		$card->setExpireMonth('11');
-		$card->setExpireYear('2018');
-		$card->setCvv2('874');
-		$card->setFirstName('Lasa');
-		$card->setLastName('dfdfdfdfdfd');
+		$card->setNumber($cc['cc_number']);
+		$card->setType($cc['cc_type']);
+		$card->setExpireMonth($cc['cc_exp_month']);
+		$card->setExpireYear($cc['cc_exp_year']);
+		$card->setCvv2($cc['cc_ccv']);
+		$card->setFirstName($cc['cc_first_name']);
+		$card->setLastName($cc['cc_last_name']);
 		$card->setBillingAddress($addr);
 
 		$fi = new FundingInstrument();
@@ -80,14 +101,15 @@ class Paypal extends Vendor_driver
 		$payer->setPaymentMethod('credit_card');
 		$payer->setFundingInstruments(array($fi));
 
+
 		$amountDetails = new Details();
-		$amountDetails->setSubtotal('7.41');
-		$amountDetails->setTax('0.03');
-		$amountDetails->setShipping('0.03');
+		$amountDetails->setSubtotal($sub_total);
+		$amountDetails->setTax($tax);
+		$amountDetails->setShipping($shipping);
 
 		$amount = new Amount();
-		$amount->setCurrency('USD');
-		$amount->setTotal('7.47');
+		$amount->setCurrency($cart['cur']);
+		$amount->setTotal($sub_total+$tax+$shipping);
 		$amount->setDetails($amountDetails);
 
 		$transaction = new Transaction();
@@ -99,16 +121,20 @@ class Paypal extends Vendor_driver
 		$payment->setPayer($payer);
 		$payment->setTransactions(array($transaction));
 
-		$resss = $payment->create($apiContext);
 
-		$payment = Payment::get('PAY-34629814WL663112AKEE3AWQ', $apiContext);
+		$res = $payment->create($apiContext);
 
+		$paymentsss = Payment::get($res->getId(), $apiContext);
+ 		 
+                print_r($res);
 		$paymentExecution = new PaymentExecution();
-		$paymentExecution->setPayer_id('PAY-5TC07842EF455884WKUIEBLA');
-
+		$paymentExecution->setPayerId($res->getId());
+ 
 		$pay_exe = $payment->execute($paymentExecution, $apiContext);
 		 
-		//var_dump($resss);
+
+
+		var_dump($pay_exe);
 		 
 		echo $pay_exe;
 

@@ -412,7 +412,7 @@ class Agreement extends PayPalResourceModel
             null,
             $apiContext,
             $restCall
-        );
+        );var_dump($json);
         $this->fromJson($json);
         return $this;
     }

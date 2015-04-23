@@ -27,6 +27,7 @@
     
 	<?php echo form_open('checkout',array("name"=>"nsds")); ?>
 	<?php $this->view($customer); ?> 
+	<?php $this->view($payment); ?> 
 	<p><?php echo form_submit('checkout', 'Checkout');?></p>
 	<?php echo form_close(); ?>
 
