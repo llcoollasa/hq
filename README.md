@@ -17,6 +17,12 @@
 dev.hq.com
 
 <br/><br/>
+# Database<br/>
+/database/hq.sql
+
+
+
+<br/><br/>
 # Bonus question<br/>
 How would you handle security for saving credit cards?<br/><br/>
 
